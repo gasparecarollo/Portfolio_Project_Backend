@@ -10,7 +10,7 @@ const menuItemController = require("./controllers/menuItemController");
 app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));
-app.use('/allMenuItems', menuItemController)
+app.use('/allMenuItems', menuItemController);
 
 //ROUTES
 app.get('/', (req, res) => {

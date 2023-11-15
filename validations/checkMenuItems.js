@@ -10,7 +10,7 @@ const checkName = (req, res, next) => {
     }
 };
 
-checkImage_id = (req, res, next) => {
+const checkImage_id = (req, res, next) => {
     const image_id = req.body.image_id;
 
     if (typeof image_id === "string") {
@@ -53,14 +53,14 @@ const checkStock = (req, res, next) => {
     }
 };
 
-const checkCost = (req, res, next) => {
-    const cost = req.body.cost;
+const checkPrice = (req, res, next) => {
+    const price = req.body.cost;
 
-    if (typeof cost === 'number' && !isNAN(cost) && cost >= 0) {
+    if (typeof price === 'number' && !isNAN(cost) && cost >= 0) {
 
         next();
     } else {
-        res.status(400).json({ error: "Cost bust be a valid number" })
+        res.status(400).json({ error: "Price must be a valid number" })
     }
 };
 
@@ -75,6 +75,6 @@ const checkRanking = (req, res, next) => {
     }
 }
 
-
+module.exports = { checkName, checkImage_id, checkCategory, checkDescription, checkStock, checkPrice, checkRanking }
 
 
