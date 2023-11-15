@@ -1,11 +1,8 @@
 const checkName = (req, res, next) => {
     const name = req.body.name;
-
     if (name) {
-
         next();
     } else {
-
         res.status(400).json({ error: "Name is required" })
     }
 };
@@ -32,7 +29,7 @@ const checkCategory = (req, res, next) => {
 const checkDescription = (req, res, next) => {
     const description = req.body.description;
 
-    if (typeof description === "string" && description.length <= 250) {
+    if (typeof description === "string" && description.length <= 500) {
 
         next();
     } else {

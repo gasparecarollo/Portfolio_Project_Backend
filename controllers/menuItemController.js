@@ -50,7 +50,7 @@ menuItems.get("/:id", async (req, res) => {
 });
 
 //CREATE
-menuItems.post("/", checkName, checkCategory, checkImage_id, checkDescription, checkPrice, checkStock, checkRanking, async (req, res) => {
+menuItems.post("/", checkName, checkImage_id, checkCategory, checkDescription, checkPrice, checkStock, checkRanking, async (req, res) => {
     try {
         const menuItem = await createMenuItem(req.body);
         res.json(menuItem)
