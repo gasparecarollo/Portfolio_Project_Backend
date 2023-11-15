@@ -1,8 +1,8 @@
 //DEPENDENCIES
 const express = require("express");
 const menuItems = express.Router();
-const reviewsController = require("./reviewsController");
-menuItems.use("/:menuItems_id/reviews", reviewsController);
+// const reviewsController = require("./reviewsController");
+// menuItems.use("/:menuItems_id/reviews", reviewsController);
 
 //QUERIES
 const {
@@ -13,4 +13,4 @@ const {
     updateMenuItem
 } = require("../queries/menuItems");
 
-}
+
