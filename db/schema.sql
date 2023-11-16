@@ -24,5 +24,5 @@ time TIMESTAMP,
 image_id TEXT NOT NULL,
 caption TEXT NOT NULL,
 hashtags TEXT NOT NULL
-menuitems 
+menuitem_id INTEGER REFERENCES menuitem (id) ON DELETE CASCADE
 );
