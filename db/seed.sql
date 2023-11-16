@@ -11,7 +11,7 @@ INSERT INTO menuitems (name,image_id, category, description, price, out_of_stock
 ('Pezzi Di Rosticceria', 'category', 'image_id', 'Pezzi are made of brioche dough that have been baked or fried and stuffed with various fillings. One of the more famous would be the Calzone al Forno (baked brioche stuffed with ham and mozzarella).', 5.00, False, 9),
 ('Pani cunzatu', 'category', 'image_id', 'The cunzatu bread, or bread cunzato, is a recipe born out of poverty. Typically made with bread seasoned with olive oil, fresh tomatoes, oregano, anchovies, salt and pepper, cheese, and onions.', 6.25, False, 7);
 
-
+INSERT INTO tweets ()
 
 
 

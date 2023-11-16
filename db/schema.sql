@@ -16,4 +16,13 @@ ranking DECIMAL(3, 1)
 CHECK (ranking >=0 AND ranking <= 10)
 );
 
-
+CREATE TABLE tweets (
+id SERIAL PRIMARY KEY,
+username TEXT NOT NULL,
+location TEXT NOT NULL,
+time TIMESTAMP,
+image_id TEXT NOT NULL,
+caption TEXT NOT NULL,
+hashtags TEXT NOT NULL
+menuitems 
+);

@@ -40,20 +40,20 @@ const checkDescription = (req, res, next) => {
 
 const checkStock = (req, res, next) => {
     const stock = req.body.out_of_stock;
-    if (out_of_stock == "true" ||
-        out_of_stock == "false" ||
-        out_of_stock == undefined ||
+    if (stock == "true" ||
+        stock == "false" ||
+        stock == undefined ||
         typeof stock === "boolean") {
         next();
     } else {
-        res.status(400).json({ error: "Out_of_stock must be a boolean" })
+        res.status(400).json({ error: "stock must be a boolean" })
     }
 };
 
 const checkPrice = (req, res, next) => {
-    const price = req.body.cost;
+    const price = req.body.price;
 
-    if (typeof price === 'number' && !isNAN(cost) && cost >= 0) {
+    if (typeof price === 'number' && !isNaN(price) && price >= 0) {
 
         next();
     } else {
