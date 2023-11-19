@@ -23,6 +23,6 @@ location TEXT NOT NULL,
 time TIMESTAMP,
 image_id TEXT NOT NULL,
 caption TEXT NOT NULL,
-hashtags TEXT NOT NULL
-menuitem_id INTEGER REFERENCES menuitem (id) ON DELETE CASCADE
+hashtags TEXT NOT NULL,
+menuitem_id INTEGER REFERENCES menuitems (id) ON DELETE CASCADE
 );
