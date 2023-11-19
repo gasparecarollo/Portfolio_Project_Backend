@@ -42,7 +42,7 @@ const deleteMenuItem = async (id) => {
 
 const updateMenuItem = async (id, menuItem) => {
     try {
-        const updatedMenuItem = await db.one("UPDATE menuitems SET name=$1, category=$2, image_id=$3, description=$4, price = $5, out_of_stock = $6, ranking = $7 WHERE ID = $8 RETURNING *", [menuItem.name, menuItem.category, menuItem.image_id, menuItem.description, menuItem.price, menuItem.out_of_stock, menuItem.ranking, id])
+        const updatedMenuItem = await db.one("UPDATE menuitems SET name=$1, category=$2, image_id=$3, description=$4, price=$5, out_of_stock=$6, ranking = $7 WHERE ID = $8 RETURNING *", [menuItem.name, menuItem.category, menuItem.image_id, menuItem.description, menuItem.price, menuItem.out_of_stock, menuItem.ranking, id])
 
         return updatedMenuItem;
 
