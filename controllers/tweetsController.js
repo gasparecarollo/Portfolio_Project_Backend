@@ -15,9 +15,9 @@ const {
 
 //INDEX 
 tweets.get("/", async (req, res) => {
-    const { menuitem_id } = req.params;
-    const allTweets = await getAllTweets(menuitem_id);
-    const tweet = await getTweet(menuitem_id);
+    const { menuItems_id } = req.params;
+    const allTweets = await getAllTweets(menuItems_id);
+    const tweet = await getTweet(menuItems_id);
 
     if (tweet.id) {
         res.status(200).json({ ...tweet, allTweets });
@@ -28,11 +28,11 @@ tweets.get("/", async (req, res) => {
 
 //SHOW
 tweets.get("/:id", async (req, res) => {
-    const { menuitem_id, id } = req.params;
-    const tweet = await getTweet(id);
-    const menuitem = await getMenuItem(menuitem_id);
+    const { menuItems_id, id } = req.params;
+    const tweet = await getTweet(id, menuItems_id);
+    const menuitem = await getMenuItem(menuItems_id);
 
-    if (tweet) {
+    if (tweet.id) {
         res.json({ ...menuitem, tweet });
     } else {
         res.status(404).json({ error: "Twitter is temporarily down, but only for a troll like you!" });
@@ -40,8 +40,8 @@ tweets.get("/:id", async (req, res) => {
 });
 //CREATE
 tweets.post("/", async (req, res) => {
-    const { menuitem_id } = req.params;
-    const tweets = await newTweet({ menuitem_id, ...req.body });
+    const { menuItems_id } = req.params;
+    const tweets = await newTweet({ menuItems_id, ...req.body });
     res.status(200).json(tweets);
 });
 
@@ -49,8 +49,8 @@ tweets.post("/", async (req, res) => {
 //UPDATE 
 
 tweets.put("/:id", async (req, res) => {
-    const { id, menuitem_id } = req.params;
-    const updatedTweet = await updateTweet({ menuitem_id, id, ...req.body });
+    const { id, menuItems_id } = req.params;
+    const updatedTweet = await updateTweet({ menuItems_id, id, ...req.body });
 
     if (updatedTweet.id) {
         res.status(200).json({ updatedTweet });

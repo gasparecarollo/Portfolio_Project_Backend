@@ -1,8 +1,8 @@
 //DEPENDENCIES
 const express = require("express");
 const menuItems = express.Router();
-// const reviewsController = require("./reviewsController");
-// menuItems.use("/:menuItems_id/reviews", reviewsController);
+const tweetsController = require("./tweetsController");
+menuItems.use("/:menuItems_id/tweets", tweetsController);
 
 //QUERIES
 const {
