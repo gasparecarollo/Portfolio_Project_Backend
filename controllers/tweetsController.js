@@ -20,7 +20,7 @@ tweets.get("/", async (req, res) => {
     const tweet = await getTweet(menuitem_id);
 
     if (tweet.id) {
-        res.status(200).json({ ...menuitem_id, allTweets });
+        res.status(200).json({ ...tweet, allTweets });
     } else {
         res.status(500).json({ error: "Your twitter wall is empty.. Troll a political thread, post a tweet no one will comment on, and retweet it, or provoke a parody account" })
     }
@@ -38,7 +38,7 @@ tweets.get("/:id", async (req, res) => {
         res.status(404).json({ error: "Twitter is temporarily down, but only for a troll like you!" });
     }
 });
-
+//CREATE
 tweets.post("/", async (req, res) => {
     const { menuitem_id } = req.params;
     const tweets = await newTweet({ menuitem_id, ...req.body });
@@ -52,7 +52,7 @@ tweets.put("/:id", async (req, res) => {
     const { id, menuitem_id } = req.params;
     const updatedTweet = await updateTweet({ menuitem_id, id, ...req.body });
 
-    if (updatedTweet) {
+    if (updatedTweet.id) {
         res.status(200).json({ updatedTweet });
     } else {
         res.status(404).json({ error: "Your tweet was flagged for disinformation." })
