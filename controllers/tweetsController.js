@@ -39,6 +39,12 @@ tweets.get("/:id", async (req, res) => {
     }
 });
 
+tweets.post("/", async (req, res) => {
+    const { menuitem_id } = req.params;
+    const newTweet = await newTweet({ menuitem_id, ...req.body });
+    res.status(200).json(newTweet);
+});
+
 
 //UPDATE 
 
