@@ -11,7 +11,7 @@ const getAllTweets = async (menuitems_id) => {
 
 const getTweet = async (id, menuitem_id) => {
     try {
-        const oneTweet = await db.one("SELECT * FROM tweets WHERE id=$1, menuItems_id=$2", [menuitem_id, id]);
+        const oneTweet = await db.one("SELECT * FROM tweets WHERE id=$1 AND menuItem_id=$2", [menuitem_id, id]);
         return oneTweet;
     } catch (error) {
         return error;

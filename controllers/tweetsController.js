@@ -17,8 +17,8 @@ const {
 tweets.get("/", async (req, res) => {
     const { menuItems_id } = req.params;
     const allTweets = await getAllTweets(menuItems_id);
-    const tweet = await getTweet(menuItems_id);
-
+    const tweet = await getMenuItem(menuItems_id);
+    // console.log("Do I have tweets?", allTweets)
     if (tweet.id) {
         res.status(200).json({ ...tweet, allTweets });
     } else {
@@ -31,7 +31,7 @@ tweets.get("/:id", async (req, res) => {
     const { menuItems_id, id } = req.params;
     const tweet = await getTweet(id, menuItems_id);
     const menuitem = await getMenuItem(menuItems_id);
-
+    console.log("hahahah", tweet)
     if (tweet.id) {
         res.json({ ...menuitem, tweet });
     } else {
