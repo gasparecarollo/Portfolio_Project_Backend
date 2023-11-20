@@ -2,7 +2,7 @@ const db = require('../db/dbConfig');
 
 const getAllTweets = async (menuitems_id) => {
     try {
-        const allTweets = await db.any("SELECT * FROM tweets WHERE menuitem_id=$1", menuitems_id);
+        const allTweets = await db.any("SELECT * FROM tweets WHERE menuitems_id=$1", menuitems_id);
         return allTweets;
     } catch (error) {
         return error;
@@ -20,14 +20,14 @@ const getTweet = async (id) => {
 
 const newTweet = async (tweet) => {
     try {
-        const newTweet = await db.one("INSERT INTO tweets (username, image_url, location, time, caption, menuitem_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+        const newTweet = await db.one("INSERT INTO tweets (username, image_url, location, time, caption, menuitems_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
             [
                 tweet.username,
                 tweet.image_url,
                 tweet.location,
                 tweet.time,
                 tweet.caption,
-                tweet.menuitem_id
+                tweet.menuitems_id
             ]
         );
         return newTweet;
