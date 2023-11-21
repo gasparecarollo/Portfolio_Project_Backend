@@ -34,6 +34,6 @@ location TEXT NOT NULL,
 image_id TEXT NOT NULL,
 message TEXT NOT NULL,
 rating DECIMAL(3,1),
-CHECK (ranking >= 0 AND ranking <= 10),
+CHECK (rating >= 0 AND rating <= 10),
 menuitem_id INTEGER REFERENCES menuitems (id) ON DELETE CASCADE
 );
