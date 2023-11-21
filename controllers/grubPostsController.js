@@ -12,6 +12,11 @@ const {
     updateGrubPost,
 } = require("../queries/grubposts");
 
+//VALIDATIONS
+const {
+    checkName, checkImage_id, checkLocation, checkMessage, checkRating, checkMenuItems_id
+} = require("../validations/checkGrubPosts");
+
 //INDEX
 grubposts.get("/", async (req, res) => {
     const allGrubPosts = await getAllGrubPosts();
@@ -38,7 +43,7 @@ grubposts.get("/:id", async (req, res) => {
 });
 
 //CREATE
-grubposts.post("/", async (req, res) => {
+grubposts.post("/", checkName, checkImage_id, checkLocation, checkMessage, checkRating, checkMenuItems_id, async (req, res) => {
     try {
         const grubpost = await createGrubPost(req.body);
         res.json(grubpost);
@@ -49,7 +54,7 @@ grubposts.post("/", async (req, res) => {
 
 
 //UPDATE
-grubposts.put("/:id", async (req, res) => {
+grubposts.put("/:id", checkName, checkImage_id, checkLocation, checkMessage, checkRating, checkMenuItems_id, async (req, res) => {
     const { id } = req.params;
     const updatedGrubPost = await updateGrubPost(id, req.body);
     res.status(200).json(updatedGrubPost);

@@ -1,17 +1,3 @@
-CREATE TABLE grubposts(
-    id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-    location TEXT NOT NULL,
-    image_id TEXT NOT NULL,
-    message TEXT NOT NULL,
-    rating DECIMAL(3, 1),
-    CHECK(rating >= 0 AND rating <= 10),
-    menuitem_id INTEGER REFERENCES menuitems(id) ON DELETE CASCADE
-);
-
-
-
-
 const checkName = (req, res, next) => {
     const name = req.body.name;
     if (name) {
@@ -51,29 +37,6 @@ const checkMessage = (req, res, next) => {
     }
 };
 
-const checkStock = (req, res, next) => {
-    const stock = req.body.out_of_stock;
-    if (stock == "true" ||
-        stock == "false" ||
-        stock == undefined ||
-        typeof stock === "boolean") {
-        next();
-    } else {
-        res.status(400).json({ error: "stock must be a boolean" })
-    }
-};
-
-const checkPrice = (req, res, next) => {
-    const price = req.body.price;
-
-    if (typeof price === 'number' && !isNaN(price) && price >= 0) {
-
-        next();
-    } else {
-        res.status(400).json({ error: "Price must be a valid number" })
-    }
-};
-
 const checkRating = (req, res, next) => {
     const rating = req.body.rating;
 
@@ -96,6 +59,6 @@ const checkMenuItems_id = (req, res, next) => {
 };
 
 
-module.exports = { checkName, checkImage_id, checkLocation, checkMessage, checkStock, checkPrice, checkRating, checkMenuItems_id }
+module.exports = { checkName, checkImage_id, checkLocation, checkMessage, checkRating, checkMenuItems_id }
 
 

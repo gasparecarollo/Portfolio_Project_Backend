@@ -1,9 +1,9 @@
-const checkName = (req, res, next) => {
-    const name = req.body.name;
-    if (name) {
+const checkUsername = (req, res, next) => {
+    const username = req.body.username;
+    if (username) {
         next();
     } else {
-        res.status(400).json({ error: "Name is required" })
+        res.status(400).json({ error: "Username is required" })
     }
 };
 
@@ -17,49 +17,38 @@ const checkImage_id = (req, res, next) => {
     }
 };
 
-const checkCategory = (req, res, next) => {
-    const category = req.body.category;
-    if (category) {
+const checkLocation = (req, res, next) => {
+    const location = req.body.location;
+    if (location) {
         next();
     } else {
-        res.status(400).json({ error: "Category must be a valid string" })
+        res.status(400).json({ error: "Location must be a valid string" })
     }
 };
 
-const checkDescription = (req, res, next) => {
-    const description = req.body.description;
+const checkCaption = (req, res, next) => {
+    const caption = req.body.caption;
 
-    if (typeof description === "string" && description.length <= 500) {
+    if (typeof caption === "string" && caption.length <= 500) {
 
         next();
     } else {
-        res.status(400).json({ error: "Description must be a valid string and be less than or equal to 250 characters" })
+        res.status(400).json({ error: "Caption must be a valid string and be less than or equal to 250 characters" })
     }
 };
 
 
-const checkStock = (req, res, next) => {
-    const stock = req.body.out_of_stock;
-    if (stock == "true" ||
-        stock == "false" ||
-        stock == undefined ||
-        typeof stock === "boolean") {
-        next();
-    } else {
-        res.status(400).json({ error: "stock must be a boolean" })
-    }
-};
+const checkHashtags = (req, res, next) => {
+    const hashtags = req.body.hashtags;
 
-const checkPrice = (req, res, next) => {
-    const price = req.body.price;
-
-    if (typeof price === 'number' && !isNaN(price) && price >= 0) {
+    if (typeof hashtags === "string" && hashtags.includes("#")) {
 
         next();
     } else {
-        res.status(400).json({ error: "Price must be a valid number" })
+        res.status(400).json({ error: "Hashtags must be a valid string and include #" })
     }
 };
+
 
 const checkRanking = (req, res, next) => {
     const ranking = req.body.ranking;
@@ -70,8 +59,28 @@ const checkRanking = (req, res, next) => {
     } else {
         res.status(400).send({ error: "Ranking is not a valid number between 0.0 and 10" })
     }
-}
+};
 
-module.exports = { checkName, checkImage_id, checkCategory, checkDescription, checkStock, checkPrice, checkRanking }
+const checkTime = (req, res, next) => {
+    const time = req.body.time;
+    const timeRegex = /^\d{2}:\d{2}$/;
+    if (typeof time === "string" && timeRegex.test(time)) {
+        next();
+    } else {
+        res.status(400).send({ error: "Time is not a valid TIMESTAMP with the format HH24:MI" })
+    }
+};
+
+const checkMenuItems_id = (req, res, next) => {
+    const menuitem_id = req.body.menuitem_id;
+
+    if (typeof menuitem_id === "number") {
+        next()
+    } else {
+        res.status(400).json({ error: "MenuItem needs to be  a valid number!" })
+    }
+};
+
+module.exports = { checkUsername, checkImage_id, checkLocation, checkCaption, checkTime, checkHashtags, checkRanking, checkMenuItems_id }
 
 

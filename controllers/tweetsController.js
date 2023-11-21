@@ -13,6 +13,21 @@ const {
     deleteTweet
 } = require("../queries/tweets.js");
 
+
+//VALIDATIONS
+
+const {
+    checkUsername,
+    checkImage_id,
+    checkLocation,
+    checkCaption,
+    checkTime,
+    checkHashtags,
+    checkRanking,
+    checkMenuItems_id
+} = require("../validations/checkTweets.js");
+
+
 //INDEX 
 tweets.get("/", async (req, res) => {
     const { menuItems_id } = req.params;
@@ -39,7 +54,7 @@ tweets.get("/:id", async (req, res) => {
     }
 });
 //CREATE
-tweets.post("/", async (req, res) => {
+tweets.post("/", checkUsername, checkImage_id, checkLocation, checkCaption, checkTime, checkHashtags, checkRanking, checkMenuItems_id, async (req, res) => {
     const { menuItems_id } = req.params;
     const tweets = await newTweet({ menuItems_id, ...req.body });
     res.status(200).json(tweets);
@@ -48,7 +63,7 @@ tweets.post("/", async (req, res) => {
 
 //UPDATE 
 
-tweets.put("/:id", async (req, res) => {
+tweets.put("/:id", checkUsername, checkImage_id, checkLocation, checkCaption, checkTime, checkHashtags, checkRanking, checkMenuItems_id, async (req, res) => {
     const { id, menuItems_id } = req.params;
     const updatedTweet = await updateTweet({ menuItems_id, id, ...req.body });
 
