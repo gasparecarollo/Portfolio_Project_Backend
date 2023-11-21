@@ -21,7 +21,7 @@ grubposts.get("/", async (req, res) => {
 
     } else {
 
-        res.status(500).json({ error: "Server error" });
+        res.status(500).json({ error: "Server tripped over and dropped your errr... grub all over the floor!" });
     }
 
 });
@@ -64,7 +64,7 @@ grubposts.delete("/:id", async (req, res) => {
     if (deletedGrubPost.id) {
         res.status(200).json(deletedGrubPost);
     } else {
-        res.status(404).json("Menu Item not found");
+        res.status(404).json("Grub post not found");
     }
 });
 
