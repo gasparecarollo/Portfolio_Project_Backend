@@ -1,19 +1,17 @@
 //DEPENDENCIES
 const express = require("express");
-const menuItems = express.Router();
+const grubposts = express.Router();
 const tweetsController = require("./tweetsController");
-const grubPostsController = require("./grubPostsController");
 menuItems.use("/:menuItems_id/tweets", tweetsController);
-menuItems.use("/:menuItems_id/grubposts", grubPostsController);
 
 //QUERIES
 const {
-    getAllMenuItems,
-    getMenuItem,
-    createMenuItem,
-    deleteMenuItem,
-    updateMenuItem
-} = require("../queries/menuItems");
+    getAllGrubPosts,
+    getGrubPost,
+    createGrubPost,
+    deleteGrubPost,
+    updateGrubPost,
+} = require("../queries/grubposts");
 
 //VALIDATIONS
 const {

@@ -13,7 +13,7 @@ description VARCHAR(500) DEFAULT NULL,
 price FLOAT NOT NULL,
 out_of_stock BOOLEAN,
 ranking DECIMAL(3, 1)
-CHECK (ranking >=0 AND ranking <= 10)
+CHECK (ranking >= 0 AND ranking <= 10)
 );
 
 CREATE TABLE tweets (
@@ -24,5 +24,16 @@ time TIMESTAMP,
 image_id TEXT NOT NULL,
 caption TEXT NOT NULL,
 hashtags TEXT NOT NULL,
+menuitem_id INTEGER REFERENCES menuitems (id) ON DELETE CASCADE
+);
+
+CREATE TABLE grubposts(
+id SERIAL PRIMARY KEY,
+name TEXT NOT NULL,
+location TEXT NOT NULL,
+image_id TEXT NOT NULL,
+message TEXT NOT NULL,
+rating DECIMAL(3,1),
+CHECK (ranking >= 0 AND ranking <= 10),
 menuitem_id INTEGER REFERENCES menuitems (id) ON DELETE CASCADE
 );
